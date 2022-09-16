@@ -1,6 +1,6 @@
 class WarehousesController < ApplicationController
     
-    before_action :set_warehouse, only: [:show, :edit, :update]
+    before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
     
     def show
     end
@@ -29,6 +29,11 @@ class WarehousesController < ApplicationController
             flash.now[:notice] = 'Não foi possível atualizar o galpão'
             render 'edit'
         end
+    end
+
+    def destroy
+        @warehouse.destroy
+        redirect_to root_path, notice: 'Galpão removido com sucesso'
     end
         #Para evitar repetir nas actions a rotas que precisa passar o id, será criado um metodo.
         #Para definir que o metodo criado num controller não é action e só pode ser usado dentro dessa classe, deve-se colocar o private.
