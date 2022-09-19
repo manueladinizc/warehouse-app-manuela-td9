@@ -24,8 +24,7 @@ describe 'Usuário vê detalhes de um galpão' do
         expect(page).to have_content('Área: 100000 m2')
         expect(page).to have_content('Endereço: Avenida do Aeroporto, 1000 CEP: 15000-000')
         expect(page).to have_content('Galpão destinado para cargas internacionais')
-        expect(page).to have_content('Estado: SP')
-    end
+        end
 
     it 'e volta para a tela inicial' do
         #Arrage
