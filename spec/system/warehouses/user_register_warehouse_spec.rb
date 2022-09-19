@@ -28,6 +28,7 @@ describe 'Usuário cadastra um galpão' do
         fill_in 'Cidade', with: 'Rio de Janeiro'
         fill_in 'CEP', with: '20100-000'
         fill_in 'Área', with: '32000'
+        fill_in 'Estado', with: 'RJ'
         click_on 'Enviar'
         #Assert
         expect(current_path).to eq root_path

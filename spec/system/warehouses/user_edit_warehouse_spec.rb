@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário edita um galpão' do
     it 'a partir da página de detalhes' do
         #Arran
-        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio')
+        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path
@@ -22,7 +22,7 @@ describe 'Usuário edita um galpão' do
 
     it 'com sucesso' do
         #Arran
-        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio')
+        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path
@@ -43,7 +43,7 @@ describe 'Usuário edita um galpão' do
 
     it 'e mantém os campos obrigatórios' do
         #Arran
-        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio')
+        warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path

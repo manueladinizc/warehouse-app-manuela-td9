@@ -12,6 +12,7 @@ pt-BR:
         address: "Endereço"
         city: "Cidade"
         area: "Área"
+        state: "Estado"
       supplier:
         corporate_name: 'Razão Social'
         brand_name: 'Nome Fantasia'

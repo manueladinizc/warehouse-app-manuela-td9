@@ -10,7 +10,8 @@ describe 'Usuário vê detalhes de um galpão' do
             area: 100_000, 
             address: 'Avenida do Aeroporto, 1000', 
             cep:'15000-000', 
-            description: 'Galpão destinado para cargas internacionais')
+            description: 'Galpão destinado para cargas internacionais',
+            state: 'SP')
         w.save()
         #Act
         visit('/')
@@ -23,6 +24,7 @@ describe 'Usuário vê detalhes de um galpão' do
         expect(page).to have_content('Área: 100000 m2')
         expect(page).to have_content('Endereço: Avenida do Aeroporto, 1000 CEP: 15000-000')
         expect(page).to have_content('Galpão destinado para cargas internacionais')
+        expect(page).to have_content('Estado: SP')
     end
 
     it 'e volta para a tela inicial' do
@@ -34,7 +36,8 @@ describe 'Usuário vê detalhes de um galpão' do
             area: 100_000, 
             address: 'Avenida do Aeroporto, 1000', 
             cep:'15000-000', 
-            description: 'Galpão destinado para cargas internacionais')
+            description: 'Galpão destinado para cargas internacionais',
+            state: 'SP')
         w.save()
         #Act
         visit '/'

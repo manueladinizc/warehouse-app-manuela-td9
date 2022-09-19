@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_014557) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_141554) do
   create_table "product_models", force: :cascade do |t|
     t.string "name"
     t.integer "weight"
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_014557) do
     t.string "address"
     t.string "cep"
     t.string "description"
+    t.string "state"
   end
 
   add_foreign_key "product_models", "suppliers"
