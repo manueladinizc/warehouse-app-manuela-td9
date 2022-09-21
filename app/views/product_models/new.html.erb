@@ -1,7 +1,13 @@
 <h1>Cadastrar Novo Modelo de Produto</h1>
 
-
-
+<% if(@product_model.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+   <% @product_model.errors.full_messages.each do |msg| %>
+     <li> <%= msg %> </li>
+   <% end %>
+  </ul>
+<% end %>
 
 <%= form_with(model: @product_model) do |f| %>
     <div>
@@ -10,19 +16,19 @@
     </div>
     <div>
       <%= f.label :weight %>
-      <%= f.number_field :weight %>
+      <%= f.number_field :weight %> g
     </div>
     <div>
       <%= f.label :height %>
-      <%= f.number_field :height %>
+      <%= f.number_field :height %> cm
     </div>
     <div>
       <%= f.label :width %>
-      <%= f.number_field :width %>
+      <%= f.number_field :width %> cm
     </div>
     <div>
       <%= f.label :depth %>
-      <%= f.number_field :depth %>
+      <%= f.number_field :depth %> cm
     </div>
     <div>
       <%= f.label :sku %>

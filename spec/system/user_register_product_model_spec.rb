@@ -10,7 +10,7 @@ describe 'Usuário cadastra um modelo de produto' do
         click_on 'Modelos de Produtos'
         click_on 'Cadastrar Novo'
         fill_in 'Nome', with: 'TV 40 polegadas'
-        fill_in 'Peso', with: '10_000'
+        fill_in 'Peso', with: 10000
         fill_in 'Altura', with: 60
         fill_in 'Largura', with: 90
         fill_in 'Profundidade', with: 10
