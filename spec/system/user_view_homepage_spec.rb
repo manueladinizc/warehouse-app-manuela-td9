@@ -5,9 +5,10 @@ describe 'Usuário visita tela inicial' do
         #Arrange
 
         #Act
-        visit('/')
+        visit(root_path)
         #Assert
         expect(page).to have_content('Sistema de Galpões e Estoque')
+        expect(page).to have_link('Sistema de Galpões e Estoque', href: root_path)
     end
 
     it 'e vê os galpões cadastrados' do

@@ -25,6 +25,7 @@ describe 'Usuário cadastra um pedido' do
         login_as(user)
         visit root_path
         click_on 'Registrar Pedido'
+        select 'SDU | Galpão Rio', from: 'Galpão Destino'
         select warehouse.name, from: 'Galpão Destino'
         select supplier.corporate_name, from: 'Fornecedor'
         fill_in 'Data Prevista de Entrega', with: '20/12/2022' 
@@ -32,7 +33,7 @@ describe 'Usuário cadastra um pedido' do
 
         #Assert
         expect(page).to have_content 'Pedido registrado com sucesso.'
-        expect(page).to have_content 'Galpão Destino: Galpão Rio'
+        expect(page).to have_content 'Galpão Destino: SDU | Galpão Rio'
         expect(page).to have_content 'Fornecedor: ACME LTDA'
         expect(page).to have_content 'Data Prevista de Entrega: 20/12/2022'
         expect(page).to have_content 'Usuário Responsável: Sergio | sergio@email.com'
