@@ -52,4 +52,39 @@ describe 'Usuário busca por um pedido' do
         expect(page).to have_content "Fornecedor: ACME LTDA"
     end
 
+    it 'e encontra múltiplos pedidos' do
+        #Arrange
+        user = User.create!(name: 'Joao', email: 'joao@email.com', password: 'password')
+
+        first_warehouse = Warehouse.create!(name: 'Galpão SP', code:'GRU', city:'São Paulo', area: '60_000', address: 'Av Paulista, 1000', cep: '80000-000', description: 'Galpão SP', state: "SP")
+
+        second_warehouse = Warehouse.create!(name: 'Galpão Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 5000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
+
+        supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'4207427100013', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
+
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('GRU12345')
+        first_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+        
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('GRU98765')
+        second_order = Order.create!(user: user, warehouse: first_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+
+        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('SDU00000')
+        third_order = Order.create!(user: user, warehouse: second_warehouse, supplier: supplier, estimated_delivery_date: 1.day.from_now)
+        #Act
+        login_as(user)
+        visit root_path
+        fill_in 'Buscar Pedido', with: 'GRU'
+        click_on 'Buscar'
+       
+        #Assert
+        expect(page).to have_content('2 pedidos encontrados')
+        expect(page).to have_content('GRU12345')
+        expect(page).to have_content('GRU98765')
+        expect(page).to have_content "Galpão Destino: GRU | Galpão SP"
+        expect(page).not_to have_content('SDU00000')
+        expect(page).not_to have_content "Galpão Destino: SDU | Galpão Rio"
+        
+     
+    end
+
 end
