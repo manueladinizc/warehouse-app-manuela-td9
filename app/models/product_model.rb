@@ -1,5 +1,8 @@
 class ProductModel < ApplicationRecord
   belongs_to :supplier
+  has_many :order_items
+  has_many :orders, through: :order_items #verifica que produtos j fieram parte de algum pedido
+
   validates :name, :weight, :width, :height, :depth, :sku, presence: true
   validates :sku, format: {with: /\A[a-zA-Z0-9-]{20}\z/, message: "Deve conter 20 caracteres"}
   validate :min_weight, :min_width, :min_height, :min_depth
