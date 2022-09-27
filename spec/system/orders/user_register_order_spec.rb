@@ -38,6 +38,7 @@ describe 'Usuário cadastra um pedido' do
         expect(page).to have_content 'Galpão Destino: SDU | Galpão Rio'
         expect(page).to have_content 'Fornecedor: ACME LTDA'
         expect(page).to have_content 'Data Prevista de Entrega: 20/12/2022'
+        expect(page).to have_content 'Situação do Pedido: Pendente'
         expect(page).to have_content 'Usuário Responsável: Sergio | sergio@email.com'
         expect(page).not_to have_content 'Galpão Recife'
         expect(page).not_to have_content 'BCG LTDA'
