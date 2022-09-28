@@ -54,6 +54,13 @@ end
 def delivered
     #@order.update(status: :delivered)
     @order.delivered!
+
+    @order.order_items.each do |item|
+      item.quantity.times do
+       StockProduct.create!(order: @order, product_model: item.product_model,warehouse: @order.warehouse)    #criou X stockproducts
+       end
+    end
+
     redirect_to @order
 end
 
