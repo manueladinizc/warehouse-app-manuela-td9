@@ -8,7 +8,7 @@ class Order < ApplicationRecord
 
   validates :code, :estimated_delivery_date, presence: true
   validate :estimated_delivery_date_is_future
-  before_validation :generate_code #criar o código antes da validação acontecer para garantir que o código está prsente
+  before_validation :generate_code, on: :create #criar o código antes da validação acontecer para garantir que o código está presente. Lança um código apenas no momento que o pedido é criado > on creade. Quando atualizar o pedido, ele se mantem. 
   
   private
   def generate_code
