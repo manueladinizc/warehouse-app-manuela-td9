@@ -21,7 +21,7 @@ describe 'Usuário cadastra um pedido' do
         Supplier.create!(corporate_name: 'BCG LTDA', brand_name: 'BCG', registration_number:'8887427100013', full_address: 'Av da Lagoa, 150', city: 'Bauru', state: 'SP', email: 'contato@bcg.com')
         supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'4207427100013', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
         
-        allow(SecureRandom).to receive(:alphanumeric).with(8).and_return('ABC12345') 
+        allow(SecureRandom).to receive(:alphanumeric).with(10).and_return('ABC1234500') 
         #Act
         login_as(user)
         visit root_path
@@ -34,7 +34,7 @@ describe 'Usuário cadastra um pedido' do
                   
         #Assert
         expect(page).to have_content 'Pedido registrado com sucesso.'
-        expect(page).to have_content 'Pedido ABC12345'
+        expect(page).to have_content 'Pedido ABC1234500'
         expect(page).to have_content 'Galpão Destino: SDU | Galpão Rio'
         expect(page).to have_content 'Fornecedor: ACME LTDA'
         expect(page).to have_content 'Data Prevista de Entrega: 20/12/2022'
