@@ -3,8 +3,11 @@ require 'rails_helper'
 describe 'Usuário cadastra um galpão' do
     it 'a partir da tela inicial' do
         #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
         #Act
         visit root_path
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Cadastrar Galpão'
         #Assert
         expect(page).to have_field('Nome')
@@ -18,8 +21,11 @@ describe 'Usuário cadastra um galpão' do
 
     it 'com sucesso' do
         #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
         #Act
         visit root_path
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Cadastrar Galpão'
         fill_in 'Nome', with: 'Rio de Janeiro'
         fill_in 'Descrição', with: 'Galpão da zona portuária do Rio'
@@ -40,8 +46,11 @@ describe 'Usuário cadastra um galpão' do
         
     it 'com dados incompletos' do
         #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
         #Act
         visit root_path 
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Cadastrar Galpão'
         fill_in 'Nome', with: ''
         fill_in 'Descrição', with:''

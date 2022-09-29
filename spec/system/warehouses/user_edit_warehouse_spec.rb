@@ -2,11 +2,15 @@ require 'rails_helper'
 
 describe 'Usuário edita um galpão' do
     it 'a partir da página de detalhes' do
-        #Arran
+        #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Aeroporto Rio'
         click_on 'Editar'
         #Assert
@@ -21,11 +25,15 @@ describe 'Usuário edita um galpão' do
     end
 
     it 'com sucesso' do
-        #Arran
+        #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Aeroporto Rio'
         click_on 'Editar'
         fill_in 'Nome', with: 'Galpão Internacional'
@@ -42,11 +50,15 @@ describe 'Usuário edita um galpão' do
     end
 
     it 'e mantém os campos obrigatórios' do
-        #Arran
+        #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         warehouse = Warehouse.create!(name: 'Aeroporto Rio', code:'SDU', city:'Rio de Janeiro', area: '60_000', address: 'Av do Porto, 1000', cep: '20000-000', description: 'Galpão do Rio', state: "RJ")
         
         #Act
         visit root_path
+        login_as(user)
+        click_on 'Sistema de Galpões e Estoque'
         click_on 'Aeroporto Rio'
         click_on 'Editar'
         fill_in 'Nome', with: ''

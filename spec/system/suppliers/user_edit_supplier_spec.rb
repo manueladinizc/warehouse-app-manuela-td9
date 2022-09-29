@@ -2,11 +2,14 @@ require 'rails_helper'
 
 describe 'Usuário edita um fornecedor' do
     it 'a partir da página de detalhes' do
-        #Arran
+        #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'4207427100013', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
         
         #Act
         visit root_path
+        login_as(user)
         click_on 'Fornecedores'
         click_on 'ACME'
         click_on 'Editar'
@@ -23,10 +26,13 @@ describe 'Usuário edita um fornecedor' do
 
     it 'com sucesso' do
         #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'4207427100013', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
         
         #Act
         visit root_path
+        login_as(user)
         click_on 'Fornecedores'
         click_on 'ACME'
         click_on 'Editar'
@@ -42,11 +48,14 @@ describe 'Usuário edita um fornecedor' do
     end
 
     it 'e mantém os campos obrigatórios' do
-        #Arran
+        #Arrange
+        user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
+
         supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'4207427100888', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
         
         #Act
         visit root_path
+        login_as(user)
         click_on 'Fornecedores'
         click_on 'ACME'
         click_on 'Editar'

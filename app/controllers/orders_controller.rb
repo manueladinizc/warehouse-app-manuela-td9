@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :authenticate_user!
+#before_action :authenticate_user!
 before_action :set_order_and_check_user, only: [:show, :edit, :update, :delivered, :canceled]
 
 def index 
