@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário visita tela inicial' do
-    it 'e vê o nome dod app' do
+    it 'e vê o nome do app' do
         #Arrange
         user = User.create!(name: "Joao", email: 'joao@email.com', password: 'password')
         #Act

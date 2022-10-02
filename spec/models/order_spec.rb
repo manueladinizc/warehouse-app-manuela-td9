@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
 
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'7584563215984', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
-      order = Order.new(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-10-01')
+      order = Order.new(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-12-01')
 
       #Act
       result = order.valid?
@@ -78,7 +78,7 @@ RSpec.describe Order, type: :model do
 
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'7584563215984', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
-      order = Order.new(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-10-01')
+      order = Order.new(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-12-01')
       #Act
       order.save!
       result = order.code
@@ -95,7 +95,7 @@ RSpec.describe Order, type: :model do
 
       s = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number:'7584563215984', full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP', email: 'contato@acme.com')
 
-      first_order = Order.create!(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-10-01')
+      first_order = Order.create!(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-12-31')
 
       second_order = Order.new(user: u, warehouse:w, supplier: s, estimated_delivery_date: '2022-11-15')
       #Act
