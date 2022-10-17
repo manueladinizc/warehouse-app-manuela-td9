@@ -49,7 +49,7 @@ RSpec.describe StockProduct, type: :model do
 
  describe '#available?' do
  #Arrange
- end
+ 
   it 'falso se não tiver destino' do
     user = User.create!(name:'Julia Almeida', email: 'julia@yahoo.com', password:'12345678')
 
@@ -69,6 +69,7 @@ RSpec.describe StockProduct, type: :model do
 
     #Assert
     expect(stock_product.available?).to eq true
+
   end 
   it 'false se tiver destino' do
     #Arrange
@@ -90,4 +91,5 @@ RSpec.describe StockProduct, type: :model do
     #Assert
     expect(stock_product.available?).to eq false
   end
+end
 end

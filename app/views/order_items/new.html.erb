@@ -1,5 +1,5 @@
 <h1>Novo Item para o Pedido <%= @order.code %> </h1>
-
+<%# Como as rotas são aninhadas, precisa passar o array no model, pois ele precisa do id para o POST %>
 <%=  form_with(model: [@order, @order_item]) do |f| %>
   <div>
     <%= f.label :product_model_id, 'Produto' %>

@@ -38,6 +38,7 @@ def search
 
     #@order = Order.find_by(code: params["query"])
     @orders = Order.where("code LIKE ?", "%#{@code}%" ) 
+    #query para buscar o que for digitado
 end
 
 def edit
