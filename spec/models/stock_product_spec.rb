@@ -48,7 +48,7 @@ RSpec.describe StockProduct, type: :model do
  end
 
  describe '#available?' do
- #Arrange
+ 
  
   it 'falso se não tiver destino' do
     user = User.create!(name:'Julia Almeida', email: 'julia@yahoo.com', password:'12345678')
