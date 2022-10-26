@@ -43,6 +43,7 @@ describe 'Warehouse API' do
             expect(json_response[0]["name"]).to eq "Galpão Rio"
 
         end
+    
 
         it 'return empty if is no warehouse' do
             #Act
@@ -52,7 +53,60 @@ describe 'Warehouse API' do
             json_response = JSON.parse(response.body)
             expect(json_response).to eq []
 
+        end
+        it 'and raise internal error' do
+            allow(Warehouse).to receive(:all).and_raise(ActiveRecord::QueryCanceled)
 
+            get '/api/v1/warehouses'
+
+            expect(response).to have_http_status(500)
         end
     end
+
+        context 'POST /api/v1/warehouses' do
+            it 'success' do
+                #Arrange
+                warehouse_params = {warehouse: { name: 'Galpão SP', code:'GRU', city:'São Paulo', area: 100000, address: 'Av Paulista, 1000', cep: '80000-000', description: 'Galpão SP', state: "SP" }} #variável com um hash
+                #Act
+                post '/api/v1/warehouses', params: warehouse_params
+                #para o post é passado a url e o parametro
+                #Asset
+                #expect(response).to have_http_status(201)
+                expect(response).to have_http_status(:created)
+                expect(response.content_type).to include 'application/json'
+                json_response = JSON.parse(response.body)
+                
+                expect(json_response["name"]).to eq('Galpão SP')
+                expect(json_response["code"]).to eq('GRU')
+                expect(json_response["city"]).to eq('São Paulo')
+                expect(json_response["area"]).to eq(100000)
+                expect(json_response["address"]).to eq('Av Paulista, 1000')
+                expect(json_response["cep"]).to eq('80000-000')
+                expect(json_response["description"]).to eq('Galpão SP')
+                expect(json_response["state"]).to eq('SP')
+    
+            end
+            it 'fail if parameters are not complete' do
+                #Arrange
+                warehouse_params = {warehouse: { name: 'Galpão SP', code:'GRU'}}
+                #Act
+                post '/api/v1/warehouses', params: warehouse_params
+                #Assert
+
+                expect(response).to have_http_status(412)
+                expect(response.body).not_to include 'Nome não pode ficar em branco'
+                expect(response.body).not_to include 'Código não pode ficar em branco'
+                expect(response.body).to include 'Cidade não pode ficar em branco'
+            end
+        end  
+
+        it 'fail if theres an internal error' do
+            #Arrange
+            allow(Warehouse).to receive(:new).and_raise(ActiveRecord::ActiveRecordError)
+            warehouse_params = {warehouse: { name: 'Galpão SP', code:'GRU', city:'São Paulo', area: 100000, address: 'Av Paulista, 1000', cep: '80000-000', description: 'Galpão SP', state: "SP" }}
+            #Act
+            post '/api/v1/warehouses', params: warehouse_params
+            #Assert
+            expect(response).to have_http_status(500)
+        end
 end

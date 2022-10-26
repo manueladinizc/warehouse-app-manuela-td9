@@ -57,4 +57,6 @@ describe 'Usuário vê o estoque' do
         expect(current_path).to eq warehouse_path(warehouse.id)
         expect(page).to have_content 'Item retirado com sucesso'
     end
+
+    
 end
